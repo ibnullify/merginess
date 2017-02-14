@@ -35,7 +35,7 @@ import java.io.FileWriter;
 public class MergeSortTester 
 {
     // Number of tests per "run time" check
-    private static final int NUM_TESTS = 1000;
+    private static final int NUM_TESTS = 100;
     private static final int GEN_RANGE = 1000; // range for random numbers.
 
     private static final String OUTPUT_CSV_FILENAME = "runtimes.csv";
@@ -50,6 +50,15 @@ public class MergeSortTester
         return result;
     }
 
+    // Generate arrays of increasing length
+    private static int[][] genArrays(int numArrays) {
+        int[][] result = new int[numArrays][0];
+        for(int i = 0; i < numArrays; i++) {
+            result[i] = genRandom(i + 1, GEN_RANGE);
+        }
+        return result;
+    }
+
     // Gets average runtime (per function call) of the sort algorithm for an array.
     private static long getRunTimeNano(int[] arr, int numTests) {
         long startTime = System.nanoTime();
@@ -57,12 +66,6 @@ public class MergeSortTester
             int[] result = MergeSort.sort(arr);
         }
         return (System.nanoTime() - startTime) / numTests;
-    }
-
-    // Gets average runtime (per function call) of sort algorithm for random 
-    //      array of length "n"
-    private static long getNanoForN(int n) {
-        return getRunTimeNano (genRandom(n, GEN_RANGE) , NUM_TESTS);
     }
 
     private static void writeRuntimeCSV(long[] runtimes) {
@@ -104,12 +107,14 @@ public class MergeSortTester
      ******************************/
     public static void main( String[] args ) 
     {
-        // Get list of runtimes from length 1-128
-
-        long[] runTimes = new long[1000];
+        System.out.println("Starting....");
+        int[][] arrays = genArrays(1000);
+        long[] runTimes = new long[arrays.length];
         for(int i = 0; i < runTimes.length; i++) {
-            runTimes[i] = getNanoForN(i + 1);
+            runTimes[i] = getRunTimeNano(arrays[i], NUM_TESTS);
+            //System.out.println((i+1) + " : " + runTimes[i]);
         }
+        System.out.println("Finished");
         writeRuntimeCSV(runTimes);
 
     }//end main
