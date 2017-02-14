@@ -5,6 +5,11 @@
  * 2017-02-15
  ******************/
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.File;
+import java.io.FileWriter;
+
 
 /*======================================
   class MergeSortTester
@@ -30,8 +35,10 @@
 public class MergeSortTester 
 {
     // Number of tests per "run time" check
-    private static final int NUM_TESTS = 10000;
+    private static final int NUM_TESTS = 1000;
     private static final int GEN_RANGE = 1000; // range for random numbers.
+
+    private static final String OUTPUT_CSV_FILENAME = "runtimes.csv";
 
     // Gens random array of length "length". Each number
     //      is within range (-range/2, range/2)
@@ -58,6 +65,36 @@ public class MergeSortTester
         return getRunTimeNano (genRandom(n, GEN_RANGE) , NUM_TESTS);
     }
 
+    private static void writeRuntimeCSV(long[] runtimes) {
+        StringBuilder result = new StringBuilder();
+        for(int i = 0; i < runtimes.length; i++) {
+            result.append(i + 1).append(",").append(runtimes[i]).append("\n");
+        }
+        String content = result.toString();
+        writeTextFile(content, OUTPUT_CSV_FILENAME);        
+    }
+
+    // Writes text to text file
+    private static void writeTextFile(String content, String fname) {
+        BufferedWriter writer = null;
+        try {
+            File result = new File(fname);
+
+            writer = new BufferedWriter(new FileWriter(result));
+            writer.write(content);
+        } catch (IOException e) {
+            System.err.println("Write to file \"" + fname + "\" failed!");
+            e.printStackTrace();
+        // Close regardless
+        } finally {
+            try {
+                writer.close();
+            } catch (Exception e) {
+                System.err.println("Welp we're screwed");
+                e.printStackTrace();
+            }
+        }
+    }
 
     /******************************
      * execution time analysis 
@@ -69,11 +106,11 @@ public class MergeSortTester
     {
         // Get list of runtimes from length 1-128
 
-        long[] runTimes = new long[128];
+        long[] runTimes = new long[1000];
         for(int i = 0; i < runTimes.length; i++) {
             runTimes[i] = getNanoForN(i + 1);
-            System.out.println ("n: " + (i + 1) + ", time: " + runTimes[i]);
         }
+        writeRuntimeCSV(runTimes);
 
     }//end main
 
