@@ -107,7 +107,7 @@ public class MergeSortTester
     }
 
     /******************************
-     * execution time analysis 
+     * execution time analysis : O(nlogn)
      * Generate a two dimensional array, that contains randomly generated arrays from size 1 to 1000.
      * Generate a new array with corresponding indices to the previous 2D array that takes the average runtime for the corresponding array at each index run 100 times.
      * Export this information as a csv file for easy viewing off the command line.
