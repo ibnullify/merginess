@@ -40,6 +40,10 @@ public class MergeSortTester
 
     private static final String OUTPUT_CSV_FILENAME = "runtimes.csv";
 
+    public static long startTime;// = System.nanoTime();
+    public static long constantrun;// = System.nanoTime() - startTime;
+
+    
     // Gens random array of length "length". Each number
     //      is within range (-range/2, range/2)
     private static int[] genRandom(int length, int range) {
@@ -71,7 +75,7 @@ public class MergeSortTester
     private static void writeRuntimeCSV(long[] runtimes) {
         StringBuilder result = new StringBuilder();
         for(int i = 0; i < runtimes.length; i++) {
-            result.append(i + 1).append(",").append(runtimes[i]).append("\n");
+            result.append(i + 1).append(",").append(runtimes[i]/constantrun).append("\n");
         }
         String content = result.toString();
         writeTextFile(content, OUTPUT_CSV_FILENAME);        
@@ -108,7 +112,15 @@ public class MergeSortTester
     public static void main( String[] args ) 
     {
         System.out.println("Starting....");
-        int[][] arrays = genArrays(1000);
+
+
+	System.out.print("Average O(1) speed:");
+	startTime = System.nanoTime();
+	constantrun = System.nanoTime() - startTime;
+	System.out.println(constantrun);
+
+
+	int[][] arrays = genArrays(1000);
         long[] runTimes = new long[arrays.length];
         for(int i = 0; i < runTimes.length; i++) {
             runTimes[i] = getRunTimeNano(arrays[i], NUM_TESTS);
@@ -117,6 +129,7 @@ public class MergeSortTester
         System.out.println("Finished");
         writeRuntimeCSV(runTimes);
 
+	
     }//end main
 
 }//end class
