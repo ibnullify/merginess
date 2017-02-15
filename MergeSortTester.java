@@ -115,9 +115,10 @@ public class MergeSortTester
 
 
 	System.out.print("Average O(1) speed:");
-	startTime = System.nanoTime();
-	constantrun = System.nanoTime() - startTime;
-	System.out.println(constantrun);
+	long startTimea = System.nanoTime();
+	long tempconstantrun = System.nanoTime() - startTimea;
+	System.out.println(tempconstantrun);
+	constantrun = tempconstantrun;
 
 
 	int[][] arrays = genArrays(1000);
