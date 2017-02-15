@@ -15,21 +15,24 @@ import java.io.FileWriter;
   class MergeSortTester
 
   ALGORITHM:
-  <INSERT YOUR DISTILLATION OF ALGO HERE>
+  There is a method that writes a random array of any specified length, and there is a method that uses that as a helper to writes a 2 dimensional array (int[][]) containing arrays of size 1 to n, where n is specified.
+  There is a method that finds the runtime in nanoseconds for each of these arrays a specified number of times, and then averages it. These averages are then put into an array, so that the indices match with the 2D array.
+  The length of the list, and the average runtime is then written to a csv file for easier access.
+  
 
   BIG-OH CLASSIFICATION OF ALGORITHM:
-  <INSERT YOUR EXECUTION TIME CATEGORIZATION OF MERGESORT HERE>
+  O(nlogn)
 
   Mean execution times for dataset of size n:
-  Batch size: <# of times each dataset size was run>
-  n=1       time: 
-  n=10      time: 
-  n=100     time: 
+  Batch 100:<# of times each dataset size was run>
+  n=1       time: 26322 //this is an exceptionally large outlier
+  n=10      time: 3393
+  n=100     time: 39290
   ...
-  n=<huge>  time: 
+  n=1000    time: 456677
 
   ANALYSIS:
-  <INSERT YOUR RESULTS ANALYSIS HERE>
+  Our algorithm gives us data for the first 1000 array sizes, and when graphed trends start to show. For one thing, it does not seem linear. There is a clear curve in the graph, so it seemingly must be higher than O(n). The next thing is it seems to grow at a much slower rate than a quadratic. The curve is not very steep, and only really starts to become visible around the size 500-700 range, if even then. This places it lower than O(n^2). This makes it a very like candidate for O(nlogn), which was out trio's original guess for the algorithm.
   ======================================*/
 
 public class MergeSortTester 
@@ -75,7 +78,7 @@ public class MergeSortTester
     private static void writeRuntimeCSV(long[] runtimes) {
         StringBuilder result = new StringBuilder();
         for(int i = 0; i < runtimes.length; i++) {
-            result.append(i + 1).append(",").append(runtimes[i]/constantrun).append("\n");
+            result.append(i + 1).append(",").append(runtimes[i]).append("\n");
         }
         String content = result.toString();
         writeTextFile(content, OUTPUT_CSV_FILENAME);        
@@ -105,9 +108,9 @@ public class MergeSortTester
 
     /******************************
      * execution time analysis 
-     * <INSERT YOUR DESCRIPTION HERE OF 
-     *  YOUR APPARATUS FOR GENERATING EXECUTION 
-     *  TIME DATA...>
+     * Generate a two dimensional array, that contains randomly generated arrays from size 1 to 1000.
+     * Generate a new array with corresponding indices to the previous 2D array that takes the average runtime for the corresponding array at each index run 100 times.
+     * Export this information as a csv file for easy viewing off the command line.
      ******************************/
     public static void main( String[] args ) 
     {
