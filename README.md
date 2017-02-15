@@ -18,12 +18,14 @@ Test the runtime of MergeSort
 
 4)The length of the list, and the average runtime is then written to a csv file for easier access.
 
-Specifics:
+
+###Specifics:
 --Generates a two dimensional array, that contains randomly generated arrays from size 1 to 1000.
 
 --Generates a new array with corresponding indices to the previous 2D array that takes the average runtime for the corresponding array at each index run 100 times.
 
 --Export sthis information as a csv file for easy viewing off the command line.
+
 
 ##ANALYSIS:
  Our algorithm gives us data for the first 1000 array sizes, and when graphed, trends start to show. For one thing, it does not seem linear. There is a clear curve in the graph, so it seemingly must be higher than O(n). The next thing is it seems to grow at a much slower rate than a quadratic. The curve is not very steep, and only really starts to become visible around the size 500-700 range, if even then. This places it lower than O(n^2). This makes it a very like candidate for O(nlogn), which was out trio's original guess for the algorithm.
