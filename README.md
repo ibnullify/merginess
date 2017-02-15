@@ -1,13 +1,16 @@
 # merginess
 
 Adris Jautakas, Dima Hvirtsman, Ibnul Jahan
-APCS pd2
+
+APCS pd1
+
 HW#07 : What Does the Data Say?
+
 2017-02-15
 
 
 
-Test the runtime of MergeSort
+GOAL: Test the runtime of MergeSort
 
 ##The algorithm is set up with the following:
 1)There is a method that writes a random array of any specified length, and there is a method that uses that as a helper to writes a 2 dimensional array (int[][]) containing arrays of size 1 to n, where n is specified. 
