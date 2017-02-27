@@ -31,8 +31,15 @@ import java.io.FileWriter;
   ...
   n=1000    time: 456677
 
+  EDIT
+  n=10000   time: 5851135
+  n=100000  time: 63101795
+
   ANALYSIS:
   Our algorithm gives us data for the first 1000 array sizes, and when graphed trends start to show. For one thing, it does not seem linear. There is a clear curve in the graph, so it seemingly must be higher than O(n). The next thing is it seems to grow at a much slower rate than a quadratic. The curve is not very steep, and only really starts to become visible around the size 500-700 range, if even then. This places it lower than O(n^2). This makes it a very like candidate for O(nlogn), which was out trio's original guess for the algorithm.
+
+  EDIT:
+  Now includes data from arrays of sizes 500 to 100000 with an increment of 500. Similar trends have still taken place.
   ======================================*/
 
 public class MergeSortTester 
