@@ -24,6 +24,7 @@ GOAL: Test the runtime of MergeSort
 
 ###Specifics:
 --Generates a two dimensional array, that contains randomly generated arrays from size 1 to 1000.
+  EDIT: Now from sizes 500 to 100000 in increments of 500 
 
 --Generates a new array with corresponding indices to the previous 2D array that takes the average runtime for the corresponding array at each index run 100 times.
 
@@ -36,5 +37,8 @@ GOAL: Test the runtime of MergeSort
 
 See our graphical data over [here](https://docs.google.com/document/d/1MZgWqBBrV99B9krH5H2i8c_CbM0Husmi6IYUl8YRbuM/pub)
 
-If the link is broken, it is repeated below:
+EDIT: See our improved graphical data [here](https://docs.google.com/document/d/1TBSr3Z4qrmvW_svUC-fTnjGy4gRA6GUKDIZKpRMhjdk/pub)
+
+If the links are broken, they are repeated below:
 https://docs.google.com/document/d/1MZgWqBBrV99B9krH5H2i8c_CbM0Husmi6IYUl8YRbuM/pub
+https://docs.google.com/document/d/1TBSr3Z4qrmvW_svUC-fTnjGy4gRA6GUKDIZKpRMhjdk/pub
