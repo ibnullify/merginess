@@ -58,10 +58,12 @@ public class MergeSortTester
     }
 
     // Generate arrays of increasing length
+    // Incremented by 10s
     private static int[][] genArrays(int numArrays) {
         int[][] result = new int[numArrays][0];
         for(int i = 0; i < numArrays; i++) {
-            result[i] = genRandom(i + 1, GEN_RANGE);
+            result[i] = genRandom(500*(i+1), GEN_RANGE);
+	    System.out.println("Generating: " + (500*(i+1)));
         }
         return result;
     }
@@ -72,13 +74,14 @@ public class MergeSortTester
         for(int repeat = 0; repeat < numTests; repeat++) {
             int[] result = MergeSort.sort(arr);
         }
+	System.out.println(arr.length + " complete");
         return (System.nanoTime() - startTime) / numTests;
     }
 
     private static void writeRuntimeCSV(long[] runtimes) {
         StringBuilder result = new StringBuilder();
         for(int i = 0; i < runtimes.length; i++) {
-            result.append(i + 1).append(",").append(runtimes[i]).append("\n");
+            result.append(500*(i + 1)).append(",").append(runtimes[i]).append("\n");
         }
         String content = result.toString();
         writeTextFile(content, OUTPUT_CSV_FILENAME);        
@@ -124,7 +127,7 @@ public class MergeSortTester
 	constantrun = tempconstantrun;
 
 
-	int[][] arrays = genArrays(1000);
+	int[][] arrays = genArrays(200);
         long[] runTimes = new long[arrays.length];
         for(int i = 0; i < runTimes.length; i++) {
             runTimes[i] = getRunTimeNano(arrays[i], NUM_TESTS);
